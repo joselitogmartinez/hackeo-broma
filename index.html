@@ -8,7 +8,6 @@
         margin: 0;
         overflow: hidden;
         background: black;
-        color: lime;
         font-family: monospace;
     }
     canvas {
@@ -16,21 +15,25 @@
     }
     #mensaje {
         position: fixed;
-        bottom: 20px;
-        left: 20px;
-        font-size: 20px;
-        color: white;
-        background: rgba(0, 0, 0, 0.7);
-        padding: 10px;
-        border-radius: 5px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px; /* Letras grandes */
+        color: red; /* Letras rojas */
+        font-weight: bold;
+        background: rgba(0, 0, 0, 0.85);
+        padding: 30px 50px;
+        border-radius: 10px;
+        text-align: center;
         display: none;
+        box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
     }
 </style>
 </head>
 <body>
 
 <canvas id="matrix"></canvas>
-<div id="mensaje">💀 TU SISTEMA HA SIDO HACKEADO 💀<br>😂 Tranquilo, solo es una broma.</div>
+<div id="mensaje">💀 EL SISTEMA HA SIDO VULNERADO 💀<br></div>
 
 <script>
     // --- Animación estilo Matrix ---
@@ -69,7 +72,7 @@
 
     setInterval(draw, 35);
 
-    // --- Mostrar mensaje de broma ---
+    // --- Mostrar mensaje ---
     setTimeout(() => {
         document.getElementById('mensaje').style.display = 'block';
     }, 6000);
