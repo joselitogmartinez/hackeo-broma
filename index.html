@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Acceso al sistema</title>
+<meta charset="UTF-8">
+<style>
+    body {
+        background-color: black;
+        color: lime;
+        font-family: monospace;
+        padding: 20px;
+    }
+    .blink {
+        animation: blink 1s infinite;
+    }
+    @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+</style>
+</head>
+<body>
+<h1>Iniciando ataque al sistema...</h1>
+<pre id="log"></pre>
+<script>
+    const lines = [
+        "[+] Conectando a servidor remoto...",
+        "[+] Inyectando payload...",
+        "[+] Accediendo a base de datos...",
+        "[+] Descargando datos confidenciales...",
+        "[!] ALERTA: Firewall detectado, evadiendo...",
+        "[+] Acceso total concedido ✅",
+        "💀 TU SISTEMA 💀",
+        ""
+    ];
+
+    let i = 0;
+    function typeLine() {
+        if (i < lines.length) {
+            document.getElementById("log").innerHTML += lines[i] + "\n";
+            i++;
+            setTimeout(typeLine, 1000);
+        }
+    }
+    typeLine();
+</script>
+</body>
+</html>
