@@ -5,45 +5,75 @@
 <meta charset="UTF-8">
 <style>
     body {
-        background-color: black;
+        margin: 0;
+        overflow: hidden;
+        background: black;
         color: lime;
         font-family: monospace;
-        padding: 20px;
     }
-    .blink {
-        animation: blink 1s infinite;
+    canvas {
+        display: block;
     }
-    @keyframes blink {
-        0% { opacity: 1; }
-        50% { opacity: 0; }
-        100% { opacity: 1; }
+    #mensaje {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        font-size: 20px;
+        color: white;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 5px;
+        display: none;
     }
 </style>
 </head>
 <body>
-<h1>Iniciando ataque al sistema...</h1>
-<pre id="log"></pre>
-<script>
-    const lines = [
-        "[+] Conectando a servidor remoto...",
-        "[+] Inyectando payload...",
-        "[+] Accediendo a base de datos...",
-        "[+] Descargando datos confidenciales...",
-        "[!] ALERTA: Firewall detectado, evadiendo...",
-        "[+] Acceso total concedido ✅",
-        "💀 TU SISTEMA 💀",
-        ""
-    ];
 
-    let i = 0;
-    function typeLine() {
-        if (i < lines.length) {
-            document.getElementById("log").innerHTML += lines[i] + "\n";
-            i++;
-            setTimeout(typeLine, 1000);
+<canvas id="matrix"></canvas>
+<div id="mensaje">💀 TU SISTEMA HA SIDO HACKEADO 💀<br>😂 Tranquilo, solo es una broma.</div>
+
+<script>
+    // --- Animación estilo Matrix ---
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = '01';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+
+    for (let x = 0; x < columns; x++) {
+        drops[x] = 1;
+    }
+
+    function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = Math.random() > 0.5 ? '#0F0' : '#FFF'; // Verde o blanco
+        ctx.font = fontSize + 'px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = letters.charAt(Math.floor(Math.random() * letters.length));
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
         }
     }
-    typeLine();
+
+    setInterval(draw, 35);
+
+    // --- Mostrar mensaje de broma ---
+    setTimeout(() => {
+        document.getElementById('mensaje').style.display = 'block';
+    }, 6000);
 </script>
+
 </body>
 </html>
