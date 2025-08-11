@@ -13,13 +13,37 @@
     canvas {
         display: block;
     }
-    #mensaje {
+    .popup {
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 50px; /* Letras grandes */
-        color: red; /* Letras rojas */
+        background: rgba(0,0,0,0.85);
+        padding: 25px 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,255,0,0.7);
+        text-align: center;
+        color: lime;
+        font-size: 28px;
+    }
+    .popup button {
+        margin-top: 15px;
+        padding: 8px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        background: red;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    #mensajeFinal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+        color: red;
         font-weight: bold;
         background: rgba(0, 0, 0, 0.85);
         padding: 30px 50px;
@@ -33,10 +57,19 @@
 <body>
 
 <canvas id="matrix"></canvas>
-<div id="mensaje">💀 EL SISTEMA HA SIDO VULNERADO 💀<br></div>
+
+<!-- Ventana inicial -->
+<div id="popup" class="popup">
+    EXTRAYENDO DATOS...
+    <br>
+    <button onclick="cancelarAccion()">CANCELAR</button>
+</div>
+
+<!-- Mensaje final -->
+<div id="mensajeFinal">💀 TU SISTEMA HA SIDO VULNERADO 💀<br></div>
 
 <script>
-    // --- Animación estilo Matrix ---
+    // Animación estilo Matrix
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
 
@@ -56,7 +89,7 @@
         ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = Math.random() > 0.5 ? '#0F0' : '#FFF'; // Verde o blanco
+        ctx.fillStyle = Math.random() > 0.5 ? '#0F0' : '#FFF';
         ctx.font = fontSize + 'px monospace';
 
         for (let i = 0; i < drops.length; i++) {
@@ -72,10 +105,19 @@
 
     setInterval(draw, 35);
 
-    // --- Mostrar mensaje ---
-    setTimeout(() => {
-        document.getElementById('mensaje').style.display = 'block';
-    }, 6000);
+    // Lógica del botón CANCELAR
+    function cancelarAccion() {
+        const popup = document.getElementById("popup");
+        popup.innerHTML = "CONCEDIENDO PERMISOS...";
+        popup.style.color = "yellow";
+        popup.style.boxShadow = "0 0 15px rgba(255,255,0,0.8)";
+
+        // Después de 2 segundos, mostrar mensaje final
+        setTimeout(() => {
+            popup.style.display = "none";
+            document.getElementById("mensajeFinal").style.display = "block";
+        }, 2000);
+    }
 </script>
 
 </body>
