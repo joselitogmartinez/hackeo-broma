@@ -105,19 +105,35 @@
 
     setInterval(draw, 35);
 
+    let accionCancelada = false;
+    let timeoutId;
+
     // Lógica del botón CANCELAR
     function cancelarAccion() {
+        accionCancelada = true;
+        clearTimeout(timeoutId);
+        cambiarMensaje();
+    }
+
+    function cambiarMensaje() {
         const popup = document.getElementById("popup");
         popup.innerHTML = "CONCEDIENDO PERMISOS...";
         popup.style.color = "yellow";
         popup.style.boxShadow = "0 0 15px rgba(255,255,0,0.8)";
-
+        
         // Después de 2 segundos, mostrar mensaje final
         setTimeout(() => {
             popup.style.display = "none";
             document.getElementById("mensajeFinal").style.display = "block";
         }, 2000);
     }
+
+    // Si no cancela, cambiar mensaje automáticamente a los 3 segundos
+    timeoutId = setTimeout(() => {
+        if (!accionCancelada) {
+            cambiarMensaje();
+        }
+    }, 3000);
 </script>
 
 </body>
