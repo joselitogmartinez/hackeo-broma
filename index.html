@@ -25,6 +25,7 @@
         text-align: center;
         color: lime;
         font-size: 28px;
+        display: none; /* oculto al inicio */
     }
     .popup button {
         margin-top: 15px;
@@ -52,11 +53,24 @@
         display: none;
         box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
     }
+    #introImage {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 300px;
+        max-height: 300px;
+        display: block;
+        z-index: 1000;
+    }
 </style>
 </head>
 <body>
 
 <canvas id="matrix"></canvas>
+
+<!-- Imagen de introducción -->
+<img id="introImage" src="https://raw.githubusercontent.com/joselitogmartinez/hackeo-broma/main/tiktok.png" alt="Intro">
 
 <!-- Ventana inicial -->
 <div id="popup" class="popup">
@@ -69,7 +83,6 @@
 <div id="mensajeFinal">💀 TU SISTEMA HA SIDO VULNERADO 💀<br></div>
 
 <script>
-    // Animación estilo Matrix
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
 
@@ -103,12 +116,9 @@
         }
     }
 
-    setInterval(draw, 35);
-
     let accionCancelada = false;
     let timeoutId;
 
-    // Lógica del botón CANCELAR
     function cancelarAccion() {
         accionCancelada = true;
         clearTimeout(timeoutId);
@@ -121,19 +131,26 @@
         popup.style.color = "yellow";
         popup.style.boxShadow = "0 0 15px rgba(255,255,0,0.8)";
         
-        // Después de 2 segundos, mostrar mensaje final
         setTimeout(() => {
             popup.style.display = "none";
             document.getElementById("mensajeFinal").style.display = "block";
         }, 2000);
     }
 
-    // Si no cancela, cambiar mensaje automáticamente a los 3 segundos
-    timeoutId = setTimeout(() => {
-        if (!accionCancelada) {
-            cambiarMensaje();
-        }
-    }, 3000);
+    function iniciarBroma() {
+        document.getElementById('introImage').style.display = 'none';
+        document.getElementById('popup').style.display = 'block';
+        timeoutId = setTimeout(() => {
+            if (!accionCancelada) {
+                cambiarMensaje();
+            }
+        }, 3000);
+        setInterval(draw, 35);
+    }
+
+    window.onload = () => {
+        setTimeout(iniciarBroma, 3000);
+    };
 </script>
 
 </body>
