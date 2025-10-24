@@ -1,158 +1,196 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>Acceso al sistema</title>
-<meta charset="UTF-8">
-<style>
-    body {
-        margin: 0;
-        overflow: hidden;
-        background: black;
-        font-family: monospace;
-    }
-    canvas {
-        display: block;
-    }
-    .popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(0,0,0,0.85);
-        padding: 25px 40px;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0,255,0,0.7);
-        text-align: center;
-        color: lime;
-        font-size: 28px;
-        display: none; /* oculto al inicio */
-    }
-    .popup button {
-        margin-top: 15px;
-        padding: 8px 15px;
-        font-size: 16px;
-        cursor: pointer;
-        background: red;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-    #mensajeFinal {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 50px;
-        color: red;
-        font-weight: bold;
-        background: rgba(0, 0, 0, 0.85);
-        padding: 30px 50px;
-        border-radius: 10px;
-        text-align: center;
-        display: none;
-        box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
-    }
-    #introImage {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 300px;
-        max-height: 300px;
-        display: block;
-        z-index: 1000;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Optimizer Pro - Acelera tu PC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: rgba(255,255,255,0.95);
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .download-btn {
+            background: linear-gradient(45deg, #00b09b, #96c93d);
+            color: white;
+            padding: 18px 45px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.9);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .testimonials {
+            background: rgba(255,255,255,0.85);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        .testimonial {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 10px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .stat-item {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            margin: 0 10px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>🚀 System Optimizer Pro</h1>
+            <p class="subtitle">Mejora el rendimiento de tu PC hasta un 300% - Completamente Gratis</p>
+            <a href="SystemOptimizerPro.exe" class="download-btn" download>
+                📥 DESCARGAR GRATIS (3.2 MB)
+            </a>
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>📊 15,234</h3>
+                    <p>Descargas esta semana</p>
+                </div>
+                <div class="stat-item">
+                    <h3>⭐ 4.8/5</h3>
+                    <p>Calificación de usuarios</p>
+                </div>
+                <div class="stat-item">
+                    <h3>🛡️ 100%</h3>
+                    <p>Libre de virus garantizado</p>
+                </div>
+            </div>
+        </header>
 
-<canvas id="matrix"></canvas>
+        <section class="features">
+            <div class="feature-card">
+                <h3>⚡ Aceleración Instantánea</h3>
+                <p>Optimización automática de memoria y procesos en tiempo real</p>
+            </div>
+            <div class="feature-card">
+                <h3>🧹 Limpieza Profunda</h3>
+                <p>Eliminación segura de archivos temporales y registro obsoleto</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔒 Seguridad Avanzada</h3>
+                <p>Protección contra malware y optimización de seguridad</p>
+            </div>
+        </section>
 
-<!-- Imagen de introducción -->
-<img id="introImage" src="https://raw.githubusercontent.com/joselitogmartinez/hackeo-broma/main/tiktok.png" alt="Intro">
+        <section class="testimonials">
+            <h2 style="text-align: center; margin-bottom: 30px;">💬 Lo que dicen nuestros usuarios</h2>
+            <div class="testimonial">
+                <span style="font-size: 2em; margin-right: 15px;">⭐</span>
+                <div>
+                    <p><strong>"¡Increíble! Mi computadora de 5 años funciona como nueva."</strong></p>
+                    <p><em>María González - Madrid</em></p>
+                </div>
+            </div>
+            <div class="testimonial">
+                <span style="font-size: 2em; margin-right: 15px;">⭐</span>
+                <div>
+                    <p><strong>"Fácil de usar y completamente gratuito. Lo recomiendo 100%."</strong></p>
+                    <p><em>Carlos Rodríguez - Barcelona</em></p>
+                </div>
+            </div>
+        </section>
 
-<!-- Ventana inicial -->
-<div id="popup" class="popup">
-    EXTRAYENDO DATOS, PELIGRO DE VULNERABILIDAD...
-    <br>
-    <button onclick="cancelarAccion()">CANCELAR ❕</button>
-</div>
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="SystemOptimizerPro.exe" class="download-btn" download>
+                🚀 DESCARGAR SYSTEM OPTIMIZER PRO
+            </a>
+        </div>
+    </div>
 
-<!-- Mensaje final -->
-<div id="mensajeFinal"> ALERTA ⚠️<br></div>
+    <footer>
+        <p>System Optimizer Pro v3.2.1 | Compatible con Windows 10/11 | © 2024</p>
+        <p style="margin-top: 10px; font-size: 0.8em;">
+            Este software es proporcionado "tal cual" sin garantías de ningún tipo.
+        </p>
+    </footer>
 
-<script>
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
+    <script>
+        // Contador de descargas en tiempo real
+        let downloadCount = 15234;
+        setInterval(() => {
+            downloadCount += Math.floor(Math.random() * 3);
+            document.querySelector('.stat-item h3').textContent = `📊 ${downloadCount.toLocaleString()}`;
+        }, 5000);
 
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-
-    const letters = '01';
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = [];
-
-    for (let x = 0; x < columns; x++) {
-        drops[x] = 1;
-    }
-
-    function draw() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = Math.random() > 0.5 ? '#0F0' : '#FFF';
-        ctx.font = fontSize + 'px monospace';
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = letters.charAt(Math.floor(Math.random() * letters.length));
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-    }
-
-    let accionCancelada = false;
-    let timeoutId;
-
-    function cancelarAccion() {
-        accionCancelada = true;
-        clearTimeout(timeoutId);
-        cambiarMensaje();
-    }
-
-    function cambiarMensaje() {
-        const popup = document.getElementById("popup");
-        popup.innerHTML = "CONCEDIENDO PERMISOS...";
-        popup.style.color = "yellow";
-        popup.style.boxShadow = "0 0 15px rgba(255,255,0,0.8)";
-        
-        setTimeout(() => {
-            popup.style.display = "none";
-            document.getElementById("mensajeFinal").style.display = "block";
-        }, 2000);
-    }
-
-    function iniciarBroma() {
-        document.getElementById('introImage').style.display = 'none';
-        document.getElementById('popup').style.display = 'block';
-        timeoutId = setTimeout(() => {
-            if (!accionCancelada) {
-                cambiarMensaje();
-            }
-        }, 3000);
-        setInterval(draw, 35);
-    }
-
-    window.onload = () => {
-        setTimeout(iniciarBroma, 3000);
-    };
-</script>
-
+        // Animación al hacer hover en botones
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
 </body>
 </html>
 
